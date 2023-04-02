@@ -4,8 +4,8 @@ const app = express();
 app.use(cors()); //cors origin
 app.use(express.json()); 
 const mongoose = require('mongoose');
-
-const port = process.env.PORT || 5000
+// mongoose.set('strictQuery', false); 
+const port = process.env.PORT || 5100
 
 app.get('/', (req, res) => {
   res.send('ITP Backend API Running');
@@ -16,7 +16,6 @@ connectMongoDB().then(()=>console.log("MongoDB connected")).catch(err => console
 async function connectMongoDB() {
   await mongoose.connect('mongodb+srv://itpHashan:itpHashan@cluster0.igb3mon.mongodb.net/?retryWrites=true&w=majority');
 }
-
 
 app.use('/api/employee', require('./route/employee.route'));
 
